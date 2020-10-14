@@ -24,6 +24,7 @@ import Divider from "@material-ui/core/Divider";
 import MoveList from "../../components/MoveList";
 import {useRouter} from "next/router";
 import Head from "next/head";
+import Copyright from "../../src/Copyright";
 
 const useStyles = makeStyles((theme) => ({
   appbarContainer: {
@@ -214,6 +215,7 @@ export default function Pokemon({pokemon, species}) {
           </Grid>
         </Grid>
     </Container>
+    <Copyright/>
   </React.Fragment>
 }
 

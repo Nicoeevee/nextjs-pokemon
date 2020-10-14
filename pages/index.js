@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import ProTip from '../src/ProTip';
-import Link from '../src/Link';
 import Copyright from '../src/Copyright';
 import Grid from "@material-ui/core/Grid";
 import {toFirstCharLowercase} from "../src/constants";
@@ -211,10 +209,6 @@ export default function Index(props) {
           <KeyboardArrowUpIcon/>
         </Fab>
       </ScrollTop>
-      <Link href="/about" color="secondary">
-        Go to the about page
-      </Link>
-      <ProTip/>
       <Copyright/>
     </React.Fragment>
 
@@ -222,7 +216,7 @@ export default function Index(props) {
 }
 
 export async function getStaticProps() {
-  let pokemons = {};
+  let pokemons;
 
   pokemons = await fetchPokemons().then(function (data) {
     const newPokemonData = {};
