@@ -23,6 +23,12 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Zoom from "@material-ui/core/Zoom";
 import {useRouter} from "next/router";
 import Head from "next/head";
+import useDarkMode from 'use-dark-mode';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
+import Tooltip from "@material-ui/core/Tooltip";
+import Badge from "@material-ui/core/Badge";
 
 const useStyles = makeStyles((theme) => ({
   fabRoot: {
@@ -132,6 +138,7 @@ export default function Index(props) {
     setFilter(toFirstCharLowercase(e.target.value));
   };
   const router = useRouter()
+  const {value: isDark, toggle: toggleDarkMode} = useDarkMode()
   return (
     <React.Fragment>
       <Head>
@@ -149,8 +156,8 @@ export default function Index(props) {
             >
               <MenuIcon/>
             </IconButton>
-            <Typography className={classes.title} variant="h6" noWrap>
-              Apo-Pokemon
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              {`Apo-Pokemon ${Object.keys(pokemons).length}`}
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -158,7 +165,7 @@ export default function Index(props) {
               </div>
               <InputBase
                 onChange={handleSearchChange}
-                placeholder="Search…"
+                placeholder="搜索…"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
@@ -166,6 +173,25 @@ export default function Index(props) {
                 inputProps={{"aria-label": "search"}}
               />
             </div>
+            <Tooltip title={'GitHub 存储库'} enterDelay={300}>
+              <IconButton
+                component="a"
+                color="inherit"
+                href="https://github.com/Nicoeevee/nextjs-pokemon"
+              >
+                <Badge badgeContent={4} color="secondary">
+                  <GitHubIcon/>
+                </Badge>
+              </IconButton>
+            </Tooltip>
+            <Tooltip title={'在light（亮色）和dark（暗色）主题中切换'} enterDelay={300}>
+              <IconButton
+                color="inherit"
+                onClick={toggleDarkMode}
+              >
+                {isDark ? <Brightness4Icon/> : <Brightness7Icon/>}
+              </IconButton>
+            </Tooltip>
           </Toolbar>
         </AppBar>
       </Box>
@@ -211,7 +237,6 @@ export default function Index(props) {
       </ScrollTop>
       <Copyright/>
     </React.Fragment>
-
   );
 }
 
@@ -236,19 +261,4 @@ export async function getStaticProps() {
       pokemons
     }
   }
-  // const allPokemonsData = {};
-  // data.forEach((pokemon, index) => {
-  //   allPokemonsData[index + 1] = {
-  //     id: index + 1,
-  //     name: pokemon.name,
-  //     sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-  //       index + 1
-  //     }.png`,
-  //   };
-  // })
-  // return {
-  //   props: {
-  //     allPokemonsData
-  //   }
-  // }
 }

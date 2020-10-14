@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/core/styles';
+import {ThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../src/theme';
+import {darkTheme, lightTheme} from '../src/theme';
+import useDarkMode from 'use-dark-mode';
 
 export default function MyApp(props) {
-  const { Component, pageProps } = props;
-
+  const {Component, pageProps} = props;
+  const {value: isDark} = useDarkMode(false);
+  const themeConfig = isDark ? darkTheme : lightTheme;
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -20,11 +22,11 @@ export default function MyApp(props) {
     <React.Fragment>
       <Head>
         <title>My page</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <meta name="viewport" content="initial-scale=1, width=device-width"/>
       </Head>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeConfig}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
+        <CssBaseline/>
         <Component {...pageProps} />
       </ThemeProvider>
     </React.Fragment>

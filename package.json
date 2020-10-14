@@ -7,12 +7,13 @@
     "@material-ui/icons": "latest",
     "@material-ui/lab": "latest",
     "axios": "^0.20.0",
-    "pokeapi-js-wrapper": "^1.1.2",
     "clsx": "latest",
     "next": "latest",
+    "pokeapi-js-wrapper": "^1.1.2",
     "prop-types": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "use-dark-mode": "^2.3.1"
   },
   "scripts": {
     "dev": "next",

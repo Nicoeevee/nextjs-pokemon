@@ -20,7 +20,6 @@ const randomDelay = () =>
   delay(MIN_DELAY_MS + Math.random() * (MAX_DELAY_MS - MIN_DELAY_MS));
 
 export const fetchPokemons = async (offset = 0) => {
-
   return P.getPokemonsList({
       offset,
       limit: 386
