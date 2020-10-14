@@ -1,11 +1,7 @@
 import React from 'react';
 import Document, {Head, Html, Main, NextScript} from 'next/document';
 import {ServerStyleSheets} from '@material-ui/core/styles';
-import {darkTheme, lightTheme} from '../src/theme';
-import useDarkMode from "use-dark-mode";
-
-const {value: isDark} = useDarkMode(false);
-const themeConfig = isDark ? darkTheme : lightTheme;
+import {lightTheme} from '../src/theme';
 
 export default class MyDocument extends Document {
 
@@ -14,7 +10,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={themeConfig.palette.primary.main}/>
+          <meta name="theme-color" content={lightTheme.palette.primary.main}/>
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
